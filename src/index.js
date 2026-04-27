@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors'; // Perbaikan: Import cors yang sebelumnya hilang
+import cors from 'cors';
 import dotenv from 'dotenv';
 
 // Import semua routes
@@ -8,16 +8,14 @@ import loanRoutes from './routes/loanRoutes.js';
 import memberRoutes from './routes/memberRoutes.js';
 import authorRoutes from './routes/authorRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
-import { BookController } from './controllers/bookController.js';
 import reportRoutes from './routes/reportRoutes.js';
 
 dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors()); // Mengizinkan akses dari frontend (seperti index.html)
-app.use(express.json()); // Cukup satu baris saja
-app.use(express.static('public')); // Pastikan file HTML ada di folder 'public'
+app.use(cors());
+app.use(express.json());
 
 // Root Route
 app.get('/', (req, res) => {
@@ -31,9 +29,6 @@ app.use('/api/members', memberRoutes);
 app.use('/api/authors', authorRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/reports', reportRoutes);
-
-// Endpoint Laporan
-app.get('/api/reports/top-books', BookController.getTopBooks);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
