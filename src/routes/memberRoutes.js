@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', MemberController.getAllMembers); 
 router.post('/', MemberController.registerMember); 
-router.put('/:id', MemberController.updateMember); 
+router.put('/:id', MemberController.updateMember); // Sekarang MemberController.updateMember sudah ada
 router.delete('/:id', MemberController.deleteMember); 
 
 export default router;
